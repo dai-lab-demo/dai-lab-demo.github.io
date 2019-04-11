@@ -29,34 +29,103 @@ var renderProjects = function(projectsList, searchString="") {
             var projectDiv = document.createElement('div')
             projectDiv.className = "Grid-cell u-size1of3 project-card"
 
-            // Project Name
-            var nameDiv = document.createElement('h1')
-            nameDiv.className = "project-name small-margin"
-            nameDiv.innerHTML = project.name
-            projectDiv.appendChild(nameDiv)
+            var projectCard = document.createElement('div');
+            projectCard.className = "project-card-inner";
 
-            // Color-coded border
-            var colorDiv = document.createElement('div')
-            colorDiv.className = "border small-margin"
-            colorDiv.style = "border-bottom-color: " + project.color
-            projectDiv.appendChild(colorDiv)
+            // Members
+            var memberDiv = document.createElement('div')
+            memberDiv.className = "line-member"
+
+            if(project.name == 'BTB'){
+                var member1 = document.createElement('img')
+                member1.setAttribute('src', '/assets/members/Kalyan-V-1.jpg')
+                member1.setAttribute('alt', 'Kalyan Veeramachaneni')
+                member1.setAttribute('title', 'Kalyan Veeramachaneni')
+                memberDiv.appendChild(member1)
+
+                var member2 = document.createElement('img')
+                member2.setAttribute('src', '/assets/members/Micah-J-Smith.jpg')
+                member2.setAttribute('alt', 'Micah J Smith')
+                member2.setAttribute('title', 'Micah J Smith')
+                memberDiv.appendChild(member2)
+
+                var member3 = document.createElement('img')
+                member3.setAttribute('src', '/assets/members/carles_sala-1.jpg')
+                member3.setAttribute('alt', 'Carles Sala')
+                member3.setAttribute('title', 'Carles Sala')
+                memberDiv.appendChild(member3)
+
+                var member4 = document.createElement('img')
+                member4.setAttribute('src', '/assets/members/AlexGeiger.png')
+                member4.setAttribute('alt', 'Alex Geiger')
+                member4.setAttribute('title', 'Alex Geiger')
+                memberDiv.appendChild(member4)
+            }else{
+                var member1 = document.createElement('img')
+                member1.setAttribute('src', '/assets/members/default.png')
+                memberDiv.appendChild(member1)
+
+                var member2 = document.createElement('img')
+                member2.setAttribute('src', '/assets/members/default.png')
+                memberDiv.appendChild(member2)
+
+                var member3 = document.createElement('img')
+                member3.setAttribute('src', '/assets/members/default.png')
+                memberDiv.appendChild(member3)
+
+                var member4 = document.createElement('img')
+                member4.setAttribute('src', '/assets/members/default.png')
+                memberDiv.appendChild(member4)
+            }
+
+            projectCard.appendChild(memberDiv)
+
+            // Project Name
+            var lineName = document.createElement('div');
+            lineName.className = "line-title"
+
+            var nameDiv = document.createElement('h1')
+            nameDiv.className = "project-name"
+            nameDiv.innerHTML = project.name
+            var iconRepo = document.createElement('img')
+            iconRepo.setAttribute('src', '/assets/repositories/btb@3x.png')
+
+            lineName.appendChild(nameDiv)
+            lineName.appendChild(iconRepo)
+            projectCard.appendChild(lineName)
 
             // Project Description (HTML version)
             var descriptionDiv = document.createElement('div')
-            descriptionDiv.className = "project-description xsmall-margin"
+            descriptionDiv.className = "project-description"
             descriptionDiv.innerHTML = project.description
-            projectDiv.appendChild(descriptionDiv)
+            projectCard.appendChild(descriptionDiv)
+
+            // Tags
+            var tagsDiv = document.createElement('div')
+            tagsDiv.className = "line-tags"
+            
+            var tags1 = document.createElement('div');
+            tags1.className = "tag-first"
+            tags1.innerHTML = "AutoML"
+            tagsDiv.appendChild(tags1)
+
+            var tags2 = document.createElement('div');
+            tags2.className = "tag-second"
+            tags2.innerHTML = "OpenSource"
+            tagsDiv.appendChild(tags2)
+
+            projectCard.appendChild(tagsDiv)
 
             // Primary Language
             var languageDiv = document.createElement('p')
             languageDiv.className = "project-language"
             languageDiv.innerHTML = project.primaryLanguage
-            projectDiv.appendChild(languageDiv)
+            //projectCard.appendChild(languageDiv)
 
             // Whitespace
             var whitespaceDiv = document.createElement('div')
             whitespaceDiv.className = "whitespace"
-            projectDiv.appendChild(whitespaceDiv)
+            //projectCard.appendChild(whitespaceDiv)
 
             // Project Links
             var projectLinksDiv = document.createElement('div')
@@ -67,7 +136,7 @@ var renderProjects = function(projectsList, searchString="") {
             githubLink.href = getGithubURL(project)
             githubLink.innerHTML = "GitHub"
             githubLink.target = "_blank"
-            projectLinksDiv.appendChild(githubLink)
+            //projectLinksDiv.appendChild(githubLink)
 
             // Website link (with clause)
             var homepageURL = getHomepageURL(project)
@@ -79,7 +148,7 @@ var renderProjects = function(projectsList, searchString="") {
                 projectLinksDiv.appendChild(websiteLink)
             }
 
-            projectDiv.appendChild(projectLinksDiv)
+            //projectCard.appendChild(projectLinksDiv)
 
             // Metrics button
             var metricsButton = document.createElement('button')
@@ -87,8 +156,9 @@ var renderProjects = function(projectsList, searchString="") {
             metricsButton.type = "button"
             metricsButton.className = "Button Button--tertiary"
             metricsButton.innerHTML = "Metrics"
-            projectDiv.appendChild(metricsButton)
+            //projectCard.appendChild(metricsButton)
 
+            projectDiv.appendChild(projectCard)
             /* Finally Add the project card to the page */
             mainDiv.appendChild(projectDiv)
         }
