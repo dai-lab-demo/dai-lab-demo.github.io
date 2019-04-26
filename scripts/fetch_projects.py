@@ -2,7 +2,6 @@ import os
 import operator
 import json
 import requests
-import re
 
 import datetime
 
@@ -20,10 +19,6 @@ print("LOG: Assuming the current path to be the root of the metrics repository."
 
 SVG_NO_OF_MEMBERS = 'N/A'
 SVG_NO_OF_REPOS = 'N/A'
-
-TAG_RE = re.compile(r'<[^>]+>')
-def remove_tags(text):
-    return TAG_RE.sub('', text)
 
 def get_previous_date(data_metrics, current_date):
     if len(data_metrics) == 0:
@@ -99,9 +94,9 @@ for org in all_orgs:
         print("Sending request for", org)
         response = fetch_one_page(graphql_queries.org_all_repos, variables)
         print("Received request for", org)
-        print(response)
+        #print(response)
         
-        if response and response["data"] and response["data"]["organization"] and response["data"]["organization"]["members"] and response["data"]["organization"]["members"]["totalCount"]:
+        if response["data"]["organization"]["members"]["totalCount"]:
             SVG_NO_OF_MEMBERS = response["data"]["organization"]["members"]["totalCount"]
 
         repository_edges = response["data"]["organization"]["repositories"]["edges"]
@@ -198,9 +193,6 @@ for repo in public_repos:
     DATA_JSON[repo_full_name]["closed_issue"] = DATA_JSON[repo_full_name]["closed_issue"]["totalCount"]
     # Contributors
     DATA_JSON[repo_full_name]["contributors"] = count_contributors_repository(repo_full_name)
-
-    # Remove Tag descriptionHTML
-    DATA_JSON[repo_full_name]["descriptionHTML"] = remove_tags(DATA_JSON[repo_full_name]["descriptionHTML"])
 
 # Save to _data directory
 file_path = PATH_TO_DATA + "/" + "projects.json"
