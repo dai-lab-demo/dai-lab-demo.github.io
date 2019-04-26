@@ -99,7 +99,7 @@ for org in all_orgs:
         print("Sending request for", org)
         response = fetch_one_page(graphql_queries.org_all_repos, variables)
         print("Received request for", org)
-        #print(response)
+        print(response)
         
         if response["data"] and response["data"]["organization"]["members"]["totalCount"]:
             SVG_NO_OF_MEMBERS = response["data"]["organization"]["members"]["totalCount"]
