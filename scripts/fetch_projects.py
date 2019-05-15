@@ -98,20 +98,21 @@ for org in all_orgs:
         print("Received request for", org)
         #print(response)
         
-        if response["data"]["organization"]["members"]["totalCount"]:
-            SVG_NO_OF_MEMBERS = response["data"]["organization"]["members"]["totalCount"]
+        if response['data']:
+            if response["data"]["organization"]["members"]["totalCount"]:
+                SVG_NO_OF_MEMBERS = response["data"]["organization"]["members"]["totalCount"]
 
-        repository_edges = response["data"]["organization"]["repositories"]["edges"]
-        all_org_edges.extend(repository_edges)
+            repository_edges = response["data"]["organization"]["repositories"]["edges"]
+            all_org_edges.extend(repository_edges)
 
-        pageInfo = response["data"]["organization"]["repositories"]["pageInfo"]
-        has_next_page = pageInfo["hasNextPage"]
-        print("has_next_page", has_next_page)
-        end_cursor = pageInfo["endCursor"]
-        print("end_cursor", end_cursor)
-        num_of_pages += 1
-        if not has_next_page:
-            break
+            pageInfo = response["data"]["organization"]["repositories"]["pageInfo"]
+            has_next_page = pageInfo["hasNextPage"]
+            print("has_next_page", has_next_page)
+            end_cursor = pageInfo["endCursor"]
+            print("end_cursor", end_cursor)
+            num_of_pages += 1
+            if not has_next_page:
+                break
 
 print("LOG: Fetched all the org repositories. Count:", len(all_org_edges))
 # print("LOG: First record")
