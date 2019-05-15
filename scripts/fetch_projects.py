@@ -41,10 +41,9 @@ def fetch_one_page(query_string, variables):
     headers = {
         "Content-Type": "application/json",
     }
-    print "ACC"
-    print variables
-    print GITHUB_USERNAME
-    print GITHUB_OAUTH_TOKEN
+    print("ACC")
+    print(GITHUB_USERNAME)
+    print(GITHUB_OAUTH_TOKEN)
     r = requests.post(GITHUB_API_ENDPOINT, json={"query": query_string, "variables": variables}, auth=(GITHUB_USERNAME, GITHUB_OAUTH_TOKEN))
     if r.status_code == 200:
         return r.json()
