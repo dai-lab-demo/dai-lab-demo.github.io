@@ -3,7 +3,7 @@ import operator
 import json
 import requests
 
-from bs4 import BeautifulSoup
+import re
 
 import datetime
 
@@ -197,9 +197,8 @@ for repo in public_repos:
     DATA_JSON[repo_full_name]["contributors"] = count_contributors_repository(repo_full_name)
 
     # descriptionHTML
-    des = BeautifulSoup(DATA_JSON[repo_full_name]["descriptionHTML"])
-    des_text = des.get_text()
-    DATA_JSON[repo_full_name]["descriptionHTML"] = des_text
+    description = re.sub('<[^<]+?>', '', DATA_JSON[repo_full_name]["descriptionHTML"])
+    DATA_JSON[repo_full_name]["descriptionHTML"] = description
 
 # Save to _data directory
 file_path = PATH_TO_DATA + "/" + "projects.json"
