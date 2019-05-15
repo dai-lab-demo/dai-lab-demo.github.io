@@ -98,7 +98,7 @@ for org in all_orgs:
         print("Received request for", org)
         #print(response)
         
-        if response['data']:
+        if response and response['data']:
             if response["data"]["organization"]["members"]["totalCount"]:
                 SVG_NO_OF_MEMBERS = response["data"]["organization"]["members"]["totalCount"]
 
