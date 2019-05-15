@@ -3,6 +3,8 @@ import operator
 import json
 import requests
 
+from bs4 import BeautifulSoup
+
 import datetime
 
 import graphql_queries
@@ -193,6 +195,11 @@ for repo in public_repos:
     DATA_JSON[repo_full_name]["closed_issue"] = DATA_JSON[repo_full_name]["closed_issue"]["totalCount"]
     # Contributors
     DATA_JSON[repo_full_name]["contributors"] = count_contributors_repository(repo_full_name)
+
+    # descriptionHTML
+    des = BeautifulSoup(DATA_JSON[repo_full_name]["descriptionHTML"])
+    des_text = des.get_text()
+    DATA_JSON[repo_full_name]["descriptionHTML"] = des_text
 
 # Save to _data directory
 file_path = PATH_TO_DATA + "/" + "projects.json"
