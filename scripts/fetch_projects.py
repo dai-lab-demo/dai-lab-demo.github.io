@@ -39,11 +39,8 @@ def fetch_one_page(query_string, variables):
     Request the GitHub GraphQL API
     """
     headers = {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
     }
-    print("ACC")
-    print(GITHUB_USERNAME)
-    print(GITHUB_OAUTH_TOKEN)
     r = requests.post(GITHUB_API_ENDPOINT, json={"query": query_string, "variables": variables}, auth=(GITHUB_USERNAME, GITHUB_OAUTH_TOKEN))
     if r.status_code == 200:
         return r.json()
@@ -99,11 +96,10 @@ for org in all_orgs:
         print("Sending request for", org)
         response = fetch_one_page(graphql_queries.org_all_repos, variables)
         print("Received request for", org)
-        #print(response)
         
         if response and response['data']:
-            if response["data"]["organization"]["members"]["totalCount"]:
-                SVG_NO_OF_MEMBERS = response["data"]["organization"]["members"]["totalCount"]
+            if response["data"]["organization"]["membersWithRole"]["totalCount"]:
+                SVG_NO_OF_MEMBERS = response["data"]["organization"]["membersWithRole"]["totalCount"]
 
             repository_edges = response["data"]["organization"]["repositories"]["edges"]
             all_org_edges.extend(repository_edges)
