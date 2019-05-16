@@ -197,8 +197,8 @@ for repo in public_repos:
     DATA_JSON[repo_full_name]["contributors"] = count_contributors_repository(repo_full_name)
 
     # descriptionHTML
-    description = re.sub('<[^<]+?>', '', DATA_JSON[repo_full_name]["descriptionHTML"])
-    DATA_JSON[repo_full_name]["descriptionHTML"] = description
+    #description = re.sub('<[^<]+?>', '', DATA_JSON[repo_full_name]["descriptionHTML"])
+    DATA_JSON[repo_full_name]["descriptionHTML"] = "description"
 
 # Save to _data directory
 file_path = PATH_TO_DATA + "/" + "projects.json"
