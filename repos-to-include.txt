@@ -1,3 +1,4 @@
+dai-lab-demo/*
 DAI-Lab/*
 HDI-Project/*
 D3-AI/*

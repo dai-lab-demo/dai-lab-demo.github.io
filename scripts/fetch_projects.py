@@ -92,7 +92,7 @@ for org in all_orgs:
     num_of_pages = 0
     while True:
         print("Num of pages", num_of_pages)
-        variables = json.dumps({"owner": org, "endCursor": end_cursor})
+        variables = json.dumps({"owner": org, "endCursor": end_cursor, "issues": {"states": "CLOSED"}})
 
         print("Sending request for", org)
         response = fetch_one_page(graphql_queries.org_all_repos, variables)
