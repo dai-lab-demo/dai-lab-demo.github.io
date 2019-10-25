@@ -11,8 +11,8 @@ import graphql_queries
 import string
 
 PATH_TO_DATA = "_data"
-GITHUB_USERNAME = os.environ["GH_USERNAME"]
-GITHUB_OAUTH_TOKEN = os.environ["OAUTH_TOKEN"]
+GITHUB_USERNAME =  os.environ["GH_USERNAME"]
+GITHUB_OAUTH_TOKEN =  os.environ["OAUTH_TOKEN"]
 GITHUB_API_ENDPOINT = "https://api.github.com/graphql"
 
 # This date is begin build project and count data
@@ -126,8 +126,8 @@ for repo in all_repos:
     variables = json.dumps({"owner": repo[0], "repo": repo[1], "endCursor": None})
 
     response = fetch_one_page(graphql_queries.repo_wise, variables)
-    if response['errors']:
-        continue
+    #if response['errors']:
+    #    continue
     if response and response['data']:
         all_repo_edges.append(response["data"])
 

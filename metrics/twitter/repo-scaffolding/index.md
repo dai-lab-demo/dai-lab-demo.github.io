@@ -1,0 +1,8 @@
+---
+layout: 'repository'
+permalink: '/metrics/twitter/repo-scaffolding/'
+title: 'DAI Lab OSS Metrics Metrics report for repo-scaffolding'
+organization: 'twitter'
+repository: 'repo-scaffolding'
+current_date: '2019-10-25'
+---
