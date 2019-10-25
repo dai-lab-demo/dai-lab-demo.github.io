@@ -1,4 +1,3 @@
-twitter/*
-pantsbuild/pants
-pantsbuild/pex
-twitterdev/search-tweets-python
+DAI-Lab/*
+HDI-Project/*
+D3-AI/*
