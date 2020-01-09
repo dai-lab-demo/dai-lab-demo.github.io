@@ -536,7 +536,7 @@ def create_template_organization_weekly(cate, now_str):
 
 # Generate template
 # WEEKLY
-if (now.weekday() == 6):
+if (now.weekday() == 3):
     for listCate in CATEGORIES_JSON:
         for cate in listCate:
             create_template_organization_weekly(cate, now_str)
