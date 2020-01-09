@@ -258,7 +258,7 @@ DATA_METRIC = {}
 now = datetime.datetime.now()
 now_str = now.strftime("%Y-%m-%d")
 # WEEKLY
-if (now.weekday() == 3):
+if (now.weekday() == 6):
     for repo in DATA_JSON:
         #print(DATA_JSON[repo])
         # Create data file
@@ -536,7 +536,7 @@ def create_template_organization_weekly(cate, now_str):
 
 # Generate template
 # WEEKLY
-if (now.weekday() == 3):
+if (now.weekday() == 6):
     for listCate in CATEGORIES_JSON:
         for cate in listCate:
             create_template_organization_weekly(cate, now_str)
