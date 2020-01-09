@@ -30,7 +30,10 @@ def get_previous_date(data_metrics, current_date):
     list_dates = []
     for date_str in data_metrics:
         date = datetime.datetime.strptime(date_str, "%Y-%m-%d")
-        list_dates.append(date)
+        if date != current_date:
+            list_dates.append(date)
+    if len(list_dates) == 0:
+        return current_date
     previous_date = max(list_dates)
 
     return previous_date.strftime("%Y-%m-%d")
